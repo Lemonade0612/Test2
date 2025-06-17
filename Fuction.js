@@ -188,3 +188,8 @@ document.addEventListener('DOMContentLoaded', function () {
     .catch(error => alert("Export failed: " + error));
   }
 });
+
+function doGet(e) {
+  return ContentService.createTextOutput("This script only supports POST requests.");
+}
+
