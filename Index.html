@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English Speak Up Class | P2P</title>
+  <link rel="stylesheet" href="Style.css">
+  <style>
+    table, th, td {
+      border: 0.5px solid #ddd;
+      text-align: center;
+      vertical-align: middle;
+    }
+    table {
+      border-collapse: collapse;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo-wrapper">
+      <img src="Pic.jpg" class="logo">
+    </div>
+
+    <form id="speakUpForm">
+      <h1>English Speak Up Class <span class="brand">P2P</span></h1>
+      <h2 id="weekDisplay">Week 1</h2>
+
+      <label for="day">Select Date (June 24th - Aug 29th)</label>
+      <input type="date" id="day" name="day" min="2025-06-24" max="2025-07-31" required>
+
+      <label for="tutor">Tutor Name</label>
+      <input type="text" id="tutor" name="tutor" required>
+
+      <label for="topic">Topic</label>
+      <input type="text" id="topic" name="topic" required>
+
+      <label for="activities">Activities</label>
+      <textarea id="activities" name="activities" rows="3" required></textarea>
+
+      <label for="attendees">Number of Attendees</label>
+      <input type="number" id="attendees" name="attendees" min="0" required>
+
+      <button type="submit">Submit</button>
+    </form>
+
+    <table id="summaryTable">
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Day</th>
+          <th>Tutors</th>
+          <th>Topic</th>
+          <th>Activities</th>
+          <th>Number of Attendees</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody"></tbody>
+    </table>
+
+    <div style="text-align:center; margin-top: 20px;">
+      <button id="downloadtosheet" type="button" onclick="exportToGoogleSheet()">Export to Google Sheets</button>
+    </div>
+  </div>
+
+  <script src="Fuction.js"></script>
+
+  <!-- ✅ EXPORT FUNCTION -->
+  <script>
+    function exportToGoogleSheet() {
+      const data = [];
+      const rows = document.querySelectorAll('#tableBody tr');
+      rows.forEach(row => {
+        const cells = row.querySelectorAll('td');
+        if (cells.length >= 6) {
+          data.push({
+            week: cells[0].innerText,
+            day: cells[1].innerText,
+            tutor: cells[2].innerText,
+            topic: cells[3].innerText,
+            activities: cells[4].innerText,
+            attendees: cells[5].innerText
+          });
+        }
+      });
+
+      fetch("https://script.google.com/macros/s/AKfycbxa9yNzy6SFLMmkN4R7uLvGlEXm7UTl6JXBYtykgS734rj3yrwrU4fVQEg9VJzdXlUuHA/exec", {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => res.text())
+      .then(msg => alert("✅ Exported to Google Sheet!"))
+      .catch(err => alert("❌ Export failed: " + err));
+    }
+  </script>
+</body>
+</html>

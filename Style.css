@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  padding: 2rem;
+  background: linear-gradient(135deg, #dcd6f7 0%, #f5e0dc 100%);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1100px;
+  margin: auto;
+}
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.logo {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+h1 {
+  text-align: center;
+  color: #6c5ce7;
+  margin-bottom: 0.3rem;
+}
+
+h2 {
+  text-align: center;
+  color: #d63031;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-top: 1rem;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 0.8rem;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+button {
+  margin-top: 2rem;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #6c5ce7, #ff7675);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+table {
+  width: 100%;
+  margin-top: 3rem;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background: #fceae6;
+}
+
+.week-end-label {
+  text-align: center;
+  font-weight: bold;
+  background: #fceae6;
+  color: #d63031;
+  font-style: italic;
+  padding: 0.8rem;
+  border-top: 2px dashed #ffb6b6;
+  border-bottom: 2px dashed #ffb6b6;
+}
+
+.week-end-row td {
+  background-color: #fce4ec;
+  color: #890c4f;
+  font-size: 14px;
+  padding: 10px;
+}
+
+.action-btn {
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  margin: 2px;
+  color: white;
+  background: linear-gradient(135deg, #6c5ce7, #ff7675);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.action-btn:hover {
+  transform: scale(1.05);
+}
+
+.edit-btn {
+  background: linear-gradient(135deg, #a29bfe, #fd79a8);
+}
+
+.delete-btn {
+  background: linear-gradient(135deg, #74b9ff, #ff6b81);
+}
