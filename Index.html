@@ -19,7 +19,7 @@
 <body>
   <div class="container">
     <div class="logo-wrapper">
-      <img src="Pic.jpg" class="logo">
+      <img src="Pic.jpg" class="logo" alt="Logo">
     </div>
 
     <form id="speakUpForm">
@@ -64,37 +64,14 @@
     </div>
   </div>
 
+  <!-- Scripts -->
   <script src="Fuction.js"></script>
-
-  <!-- ✅ EXPORT FUNCTION -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
   <script>
     function exportToGoogleSheet() {
-      const data = [];
-      const rows = document.querySelectorAll('#tableBody tr');
-      rows.forEach(row => {
-        const cells = row.querySelectorAll('td');
-        if (cells.length >= 6) {
-          data.push({
-            week: cells[0].innerText,
-            day: cells[1].innerText,
-            tutor: cells[2].innerText,
-            topic: cells[3].innerText,
-            activities: cells[4].innerText,
-            attendees: cells[5].innerText
-          });
-        }
-      });
-
-      fetch("https://script.google.com/macros/s/AKfycbxa9yNzy6SFLMmkN4R7uLvGlEXm7UTl6JXBYtykgS734rj3yrwrU4fVQEg9VJzdXlUuHA/exec", {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(res => res.text())
-      .then(msg => alert("✅ Exported to Google Sheet!"))
-      .catch(err => alert("❌ Export failed: " + err));
+      const table = document.getElementById("summaryTable");
+      const workbook = XLSX.utils.table_to_book(table, { sheet: "SpeakUp Summary" });
+      XLSX.writeFile(workbook, "SpeakUp_Class_Data.xlsx");
     }
   </script>
 </body>
